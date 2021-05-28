@@ -15,10 +15,9 @@ void printmassiv(int k, unsigned int a[])
     printf("\n");
 }
 
-void zadacha(int n, unsigned int a[])
+int check(int n, unsigned int a[])
 {
-    int b[n];
-    int sk = 0, sl;
+    int sl = 0, k = 0;
     for (int i = 0; i < n; i++)
     {
         sl = 0;
@@ -31,37 +30,72 @@ void zadacha(int n, unsigned int a[])
         else
             sl++;
         if (!sl)
-          b[sk++] = i;
+            k++;
     }
-    switch(sk)
+    return k;
+}
+
+int check1(int n)
+{
+    if (n > 1)
     {
-        case 0:
-            break;
-        case 1:
-            printf("%d\n", a[b[0]]);
-            break;
-        case 2:
-            sl = a[b[0]];
-            a[b[0]] = a[b[1]];
-            a[b[1]] = sl;
-            break;
-        default:
-            for (int i = 0; i < sk; i++)
-                printf("%d; ", b[i]);
-            printf("\n");
-            break;
+      for (int i = 2; i < n; i++)
+          if (n % i == 0)
+              return 0;
+      return 1;
+    }
+    else
+        return 0;
+}
+
+void zadacha(int n, int k, unsigned int a[], unsigned int b[])
+{
+    int l = 0;
+    switch (k)
+    {
+      case 0:
+          break;
+      case 1:
+          for(int i = 0; i < n; i++)
+          {
+              if (check1(a[i]) == 1)
+                  printf("В массиве только один простой элемент: %d\n", a[i]);
+          }
+          break;
+      case 2:
+          for(int i = 0; i < n; i++)
+          {
+              if (check1(a[i]) == 1 && !k)
+                  k = i;
+              if (check1(a[i]) == 1 && !l)
+              {
+                  l = a[i];
+                  a[i] = a[k];
+                  a[k] = l;
+                  l = 1;
+              }
+              printf("Элементы поменялись местами\n", );
+          }
+          break;
+      default:
+          printf("В массиве более 3-х простых элементов\n", );
+          break;
     }
 }
 
 int main()
 {
-    srand(time(NULL));
     int n = 0;
+    srand(time(NULL));
     printf("Введите количество элементов в массиве: ");
     scanf("%d", &n);
-    unsigned int a[n];
+    unsigned int a[n], b[n];
+    unsigned int l = 0;
     zapol(n, a);
     printmassiv(n, a);
-    zadacha(n, a);
+    l = check(n, a);
+    zadacha(n, l, a, b);
+    printmassiv(n, a);
+    printf("\nКол-во символов: %d\n", l);
     return 0;
 }

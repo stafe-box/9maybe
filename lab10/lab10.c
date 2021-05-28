@@ -44,7 +44,14 @@ int main()
       exit(EXIT_FAILURE);
     }
     for (int i = 0; i < n; i++)
+    {
         a[i] = malloc(m * sizeof(int));
+        if (!a[i])
+        {
+          printf("Memory alloaction error!\n");
+          exit(EXIT_FAILURE);
+        }
+    }
     zapol(n, m, a);
     printmassiv(n, m, a);
     printf("Норма Фробениуса равна: %d\n", norma(n, m, a));
