@@ -29,6 +29,7 @@ int norma(int n, int m, int a[][m])
       }
     return sum;
 }
+
 int main()
 {
     srand(time(NULL));
