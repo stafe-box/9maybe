@@ -47,7 +47,7 @@ int check1(int a)
 
 void zadacha(int n, int l, int a[])
 {
-    int i = 0, p = 0, u = 0, h = 0;
+    int i = 0, p = 0, u = 0, h = 0, k = 0;
     switch(l)
     {
       case 0:
@@ -62,9 +62,12 @@ void zadacha(int n, int l, int a[])
       case 2:
           for(i = 0; i < n; i++)
           {
-              if ((check1(a[i]) == 1) && !p)
+              if ((check1(a[i]) == 1) && !k)
+              {
                   p = i;
-              if ((check1(a[i]) == 1) && p)
+                  k++;
+              }
+              if ((check1(a[i]) == 1) && k)
                   h = i;
           }
           u = a[p];

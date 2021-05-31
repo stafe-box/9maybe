@@ -41,7 +41,7 @@ int main()
     while(1)
     {
         x = mygetch();
-        if(!isdigit(x))
+        if(!isalnum(x))
         {
             if((x == 0x7f || !is_functional()) && x != 0x1b)
                 break;
@@ -49,10 +49,15 @@ int main()
         }
         else
         {
-            if (x == 57)
-                x = 48;
+            if (isdigit(x))
+            {
+                if (x == 57)
+                    x = 48;
+                else
+                    x++;
+                printf("%c", x);
+            }
             else
-                x++;
             printf("%c", x);
         }
     }
