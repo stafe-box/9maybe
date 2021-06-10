@@ -19,20 +19,23 @@ unsigned int res2(unsigned int x)
     else
         return 0;
 }
-
+unsigned int u(unsigned int x)
+{
+    unsigned int k;
+    while(x)
+    {
+        x /= 10;
+        k++;
+    }
+    return k;
+}
 int main()
 {
-    unsigned int x = 0, k = 0, l = 0;
+    unsigned int x = 0;;
     printf("Введите число:");
     scanf("%u", &x);
-    l = x;
-    while(l)
-    {
-      k++;
-      l /= 10;
-    }
-    printf("Среднее арифметическое цифр числа через цикл: %le\n", (res1(x) * 1.0f) / (k * 1.0f));
-    printf("Среднее арифметическое цифр числа через рекурсию: %le\n", (res2(x) * 1.0f ) / (k * 1.0f));
+    printf("Среднее арифметическое цифр числа через цикл: %le\n", (res1(x) * 1.0f) / (u(x) * 1.0f));
+    printf("Среднее арифметическое цифр числа через рекурсию: %le\n", (res2(x) * 1.0f ) / (u(x) * 1.0f));
     printf("\n");
     return 0;
 }
