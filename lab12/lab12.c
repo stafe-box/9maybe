@@ -107,7 +107,7 @@ void print1str(int i, repairs *name)
 int check(int i, repairs *name)
 {
     char v1[] = "lada";
-    char v2[] = "vesta_sw_cross";
+    char v2[] = "vesta_cross_sw";
     if (!strcmp(name[i].marka, v1) && !strcmp(name[i].model, v2))
         return 1;
     else
@@ -122,7 +122,7 @@ void read_repairs(int n, repairs *name)
     else
     {
         for(int i = 0; i < n; i++)
-            fscanf(repairs_list, "%d %s %s %s %d", &name[i].status, name[i].name, name[i].marka, name[i].model, &name[i].price);
+            fscanf(repairs_list, "%d %s %s %s %d \n", &name[i].status, name[i].name, name[i].marka, name[i].model, &name[i].price);
         fclose(repairs_list);
     }
 }
@@ -133,7 +133,7 @@ void write_repairs(int n, repairs *name)
     for (int i = 0; i < n; i++)
     {
         if (name[i].status)
-        fprintf(repairs_list, "%d %s %s %s %d", name[i].status, name[i].name, name[i].marka, name[i].model, name[i].price);
+        fprintf(repairs_list, "%d %s %s %s %d \n", name[i].status, name[i].name, name[i].marka, name[i].model, name[i].price);
     }
     fclose(repairs_list);
 }
@@ -174,7 +174,7 @@ int main()
                   break;
               case 4:
                   for(int i = 0; i < n; i++)
-                      if(check(i, test) == 1)
+                      if(check(i, test))
                           print1str(i, test);
                   break;
               case 5:
